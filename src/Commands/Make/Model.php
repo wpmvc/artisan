@@ -1,6 +1,6 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands\Make;
+namespace WpMVC\Artisan\Commands\Make;
 
 class Model extends Make {
     //phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
@@ -26,9 +26,9 @@ class Model extends Make {
 
     public function uses_classes():array {
         return [
-            'WaxFramework\App',
-            'WaxFramework\Database\Resolver',
-            'WaxFramework\Database\Eloquent\Model'
+            'WpMVC\App',
+            'WpMVC\Database\Resolver',
+            'WpMVC\Database\Eloquent\Model'
         ];
     }
 

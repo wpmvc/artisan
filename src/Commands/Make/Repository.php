@@ -1,6 +1,6 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands\Make;
+namespace WpMVC\Artisan\Commands\Make;
 
 class Repository extends Make {
     //phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase

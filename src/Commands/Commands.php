@@ -1,15 +1,15 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands;
+namespace WpMVC\Artisan\Commands;
 
-use WaxFramework\Artisan\Commands\App\Setup;
-use WaxFramework\Artisan\Commands\Make\Controller;
-use WaxFramework\Artisan\Commands\Make\DTO;
-use WaxFramework\Artisan\Commands\Make\Middleware;
-use WaxFramework\Artisan\Commands\Make\Model;
-use WaxFramework\Artisan\Commands\Make\Provider;
-use WaxFramework\Artisan\Commands\Make\Repository;
-use WaxFramework\Artisan\Contracts\Command;
+use WpMVC\Artisan\Commands\App\Setup;
+use WpMVC\Artisan\Commands\Make\Controller;
+use WpMVC\Artisan\Commands\Make\DTO;
+use WpMVC\Artisan\Commands\Make\Middleware;
+use WpMVC\Artisan\Commands\Make\Model;
+use WpMVC\Artisan\Commands\Make\Provider;
+use WpMVC\Artisan\Commands\Make\Repository;
+use WpMVC\Artisan\Contracts\Command;
 
 class Commands
 {

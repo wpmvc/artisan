@@ -1,8 +1,8 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands\Make;
+namespace WpMVC\Artisan\Commands\Make;
 
-use WaxFramework\Artisan\Contracts\Command;
+use WpMVC\Artisan\Contracts\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

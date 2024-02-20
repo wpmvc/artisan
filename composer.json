@@ -1,11 +1,11 @@
 {
-    "name": "waxframework/artisan",
+    "name": "wpmvc/artisan",
     "type": "library",
     "license": "MIT",
     "version": "1.0.0",
     "autoload": {
         "psr-4": {
-            "WaxFramework\\Artisan\\": "src/"
+            "WpMVC\\Artisan\\": "src/"
         }
     },
     "authors": [

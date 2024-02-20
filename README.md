@@ -1,3 +1,3 @@
 <h1>
-	<a href="https://github.com/sovware/waxframework">WaxFramework Documentation</a>
+	<a href="https://github.com/wpmvc/wpmvc">WpMVC Documentation</a>
 </h1>

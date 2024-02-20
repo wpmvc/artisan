@@ -1,9 +1,9 @@
 <?php
 
-namespace WaxFramework\Artisan;
+namespace WpMVC\Artisan;
 
 use Symfony\Component\Console\Application;
-use WaxFramework\Artisan\Commands\Commands;
+use WpMVC\Artisan\Commands\Commands;
 
 class Artisan
 {
@@ -15,7 +15,7 @@ class Artisan
 
     public function execute() {
         $application = new Application();
-        $application->setName( 'WaxFramework <info>' . $this->get_wax_framework_version() . '</info>' );
+        $application->setName( 'WpMVC <info>' . $this->get_wpmvc_version() . '</info>' );
 
         foreach ( Commands::list() as $command ) {
             $command_object = new $command();
@@ -26,7 +26,7 @@ class Artisan
         $application->run();
     }
 
-    public function get_wax_framework_version() {
+    public function get_wpmvc_version() {
         $file_path = $this->root_dir . '/composer.json';
 
         if ( ! is_file( $file_path ) ) {

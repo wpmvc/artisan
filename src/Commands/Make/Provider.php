@@ -1,6 +1,6 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands\Make;
+namespace WpMVC\Artisan\Commands\Make;
 
 class Provider extends Make {
     //phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
@@ -26,7 +26,7 @@ class Provider extends Make {
     
     public function uses_classes():array {
         return [
-            'WaxFramework\Contracts\Provider'
+            'WpMVC\Contracts\Provider'
         ];
     }
 

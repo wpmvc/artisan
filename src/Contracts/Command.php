@@ -1,9 +1,9 @@
 <?php
 
-namespace WaxFramework\Artisan\Contracts;
+namespace WpMVC\Artisan\Contracts;
 
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
-use WaxFramework\Artisan\Artisan;
+use WpMVC\Artisan\Artisan;
 
 abstract class Command extends ConsoleCommand {
     public Artisan $artisan;

@@ -1,10 +1,10 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands\App;
+namespace WpMVC\Artisan\Commands\App;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use WaxFramework\Artisan\Contracts\Command;
+use WpMVC\Artisan\Contracts\Command;
 use Symfony\Component\Console\Question\Question;
 
 class Setup extends Command
@@ -70,7 +70,7 @@ class Setup extends Command
 
         $this->update_file_content( $search, $replace );
 
-        $old_root_file = $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'waxframework.php';
+        $old_root_file = $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'wpmvc.php';
         $new_root_file = $this->artisan->root_dir . DIRECTORY_SEPARATOR . $file_name . '.php';
 
         $subject  = file_get_contents( $old_root_file );
@@ -97,7 +97,7 @@ class Setup extends Command
     protected function update_artisan_file( string $namespace ) {
         $artisan_path = $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'artisan';
         $subject      = file_get_contents( $artisan_path );
-        file_put_contents( $artisan_path, str_replace( ['vendor-src', 'WaxFramework'], ['vendor/vendor-src', "{$namespace}\\WaxFramework"], $subject ) );
+        file_put_contents( $artisan_path, str_replace( ['vendor-src', 'WpMVC'], ['vendor/vendor-src', "{$namespace}\\WpMVC"], $subject ) );
     }
 
     protected function update_file_content( array $search, array $replace ) {

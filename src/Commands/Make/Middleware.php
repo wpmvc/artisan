@@ -1,6 +1,6 @@
 <?php
 
-namespace WaxFramework\Artisan\Commands\Make;
+namespace WpMVC\Artisan\Commands\Make;
 
 class Middleware extends Make {
     //phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
@@ -29,7 +29,7 @@ class Middleware extends Make {
     public function uses_classes():array {
         return [
             'WP_REST_Request',
-            'WaxFramework\Routing\Contracts\Middleware'
+            'WpMVC\Routing\Contracts\Middleware'
         ];
     }
 
