@@ -3,48 +3,94 @@
 namespace WpMVC\Artisan\Commands\Make;
 
 class DTO extends Make {
-    //phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
+    /**
+     * Command name for creating a new DTO class.
+     *
+     * @var string
+     */
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
     protected static $defaultName = 'make:dto';
 
-    //phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
+    /**
+     * Command description for creating a new DTO class.
+     *
+     * @var string
+     */
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase
     protected static $defaultDescription = 'Create a new data transfer class';
 
-    public function namespaces():array {
+    /**
+     * Returns the namespaces to be used in the generated DTO file.
+     *
+     * @return array
+     */
+    public function namespaces(): array {
         return [
             explode( '\\', __NAMESPACE__ )[0],
             'App',
-            'DTO'
+            'DTO',
         ];
     }
 
-    public function directories():array {
+    /**
+     * Returns the directory structure where the DTO file will be created.
+     *
+     * @return array
+     */
+    public function directories(): array {
         return [
             'app',
             'DTO',
         ];
     }
-    
-    public function uses_classes():array {
-        return [];
+
+    /**
+     * Returns the classes to be used in the "use" statements of the generated DTO file.
+     *
+     * @return array
+     */
+    public function uses_classes(): array {
+        return [
+            'WpMVC\DTO\DTO',
+        ];
     }
 
-    public function file_content() {
+    /**
+     * Returns the file content template for the new DTO class.
+     *
+     * @return string
+     */
+    public function file_content(): string {
         return '<?php
 
 namespace NamespaceName;
 
 defined( "ABSPATH" ) || exit;
 
-class ClassName {
+UsesClasses
 
-    private string $title;
+class ClassName extends DTO {
+    private int $id;
 
-    public function get_title() {
-        return $this->title;
+    /**
+     * Get the value of id.
+     *
+     * @return int
+     */
+    public function get_id(): int {
+        return $this->id;
     }
 
-    public function set_title( string $title ) {
-        $this->title = $title;
+    /**
+     * Set the value of id.
+     *
+     * @param int $id
+     *
+     * @return self
+     */
+    public function set_id( int $id ): self {
+        $this->id = $id;
+        return $this;
     }
 }';
     }
