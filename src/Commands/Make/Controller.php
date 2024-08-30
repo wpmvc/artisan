@@ -28,7 +28,11 @@ class Controller extends Make {
 
     public function uses_classes():array {
         return[
-            'App\Http\Controllers\Controller'
+            'App\Http\Controllers\Controller',
+            'WpMVC\Exceptions\Exception',
+            'WpMVC\Routing\Response',
+            'WpMVC\RequestValidator\Validator',
+            'WP_REST_Request'
         ];
     }
 
@@ -42,8 +46,10 @@ defined( "ABSPATH" ) || exit;
 UsesClasses
 
 class ClassName extends Controller {
-    public function index() {
-        //
+    public function index( Validator $validator, WP_REST_Request $request ) {
+        
+
+        return Response::send([]);
     }
 }';
     }

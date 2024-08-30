@@ -26,7 +26,8 @@ class Provider extends Make {
     
     public function uses_classes():array {
         return [
-            'WpMVC\Contracts\Provider'
+            'WpMVC\Contracts\Provider',
+            'WpMVC\Exceptions\Exception',
         ];
     }
 

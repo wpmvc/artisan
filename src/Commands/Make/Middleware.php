@@ -29,7 +29,8 @@ class Middleware extends Make {
     public function uses_classes():array {
         return [
             'WP_REST_Request',
-            'WpMVC\Routing\Contracts\Middleware'
+            'WpMVC\Routing\Contracts\Middleware',
+            'WpMVC\Exceptions\Exception',
         ];
     }
 

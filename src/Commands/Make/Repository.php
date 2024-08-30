@@ -53,6 +53,7 @@ class Repository extends Make {
         return [
             'WpMVC\Repositories\Repository',
             'WpMVC\Database\Query\Builder',
+            'WpMVC\Exceptions\Exception',
         ];
     }
 
