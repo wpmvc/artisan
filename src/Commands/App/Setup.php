@@ -134,9 +134,7 @@ class Setup extends Command
     protected function files() {
         return [
             'composer.json',
-            'package.json',
-            'scoper.inc.php',
-            'utils.js'
+            'package.json'
         ];
     }
 
