@@ -82,7 +82,7 @@ class ClassName extends Controller {
             ]
         );
 
-        $dto = new YoutDTO;
+        $dto = new YourDTO;
         $id  = $this->repository->create( $dto );
 
         return Response::send(
@@ -138,7 +138,7 @@ class ClassName extends Controller {
             ]
         );
 
-        $dto = new YoutDTO;
+        $dto = new YourDTO;
         $dto->set_id( $request->get_param( "id" ) );
 
         $this->repository->update( $dto );
