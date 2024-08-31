@@ -141,7 +141,7 @@ class Setup extends Command
     }
 
     protected function directories() {
-        return ['app', 'config', 'routes', 'database', 'enqueues'];
+        return ['app', 'config', 'routes', 'database', 'dev-tools', 'enqueues'];
     }
 
     protected function plugin_name_validation( $plugin_name, InputInterface $input, OutputInterface $output ) {
