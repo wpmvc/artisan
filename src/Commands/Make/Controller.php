@@ -46,10 +46,131 @@ defined( "ABSPATH" ) || exit;
 UsesClasses
 
 class ClassName extends Controller {
-    public function index( Validator $validator, WP_REST_Request $request ) {
-        
 
-        return Response::send([]);
+    public YourRepository $repository;
+
+    public function __construct( YourRepository $repository ) {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Validator $validator Instance of the Validator.
+     * @param WP_REST_Request $request The REST request instance.
+     * @return array
+     */
+    public function index( Validator $validator, WP_REST_Request $request ): array {
+        return Response::send(
+            [
+                "items" => $this->repository->get()
+            ]
+        );
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Validator $validator Instance of the Validator.
+     * @param WP_REST_Request $request The REST request instance.
+     * @return array
+     */
+    public function store( Validator $validator, WP_REST_Request $request ): array {
+        $validator->validate(
+            [
+                // Add request-validation rules here.
+            ]
+        );
+
+        $dto = new YoutDTO;
+        $id  = $this->repository->create( $dto );
+
+        return Response::send(
+            [
+                "message" => esc_html__( "Item was created successfully" ),
+                "data"    => [
+                    "id" => $id
+                ]
+            ], 201
+        );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Validator $validator Instance of the Validator.
+     * @param WP_REST_Request $request The REST request instance.
+     * @return array
+     * @throws Exception
+     */
+    public function show( Validator $validator, WP_REST_Request $request ): array {
+        $validator->validate(
+            [
+                "id" => "required|numeric"
+            ]
+        );
+
+        $item = $this->repository->get_by_id( $request->get_param( "id" ) );
+
+        if ( ! $item ) {
+            throw new Exception( esc_html__( "Item not found" ) );
+        }
+
+        return Response::send(
+            [
+                "data" => $item
+            ]
+        );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Validator $validator Instance of the Validator.
+     * @param WP_REST_Request $request The REST request instance.
+     * @return array
+     */
+    public function update( Validator $validator, WP_REST_Request $request ): array {
+        $validator->validate(
+            [
+                "id" => "required|numeric"
+                // Add other validation rules as needed.
+            ]
+        );
+
+        $dto = new YoutDTO;
+        $dto->set_id( $request->get_param( "id" ) );
+
+        $this->repository->update( $dto );
+
+        return Response::send(
+            [
+                "message" => esc_html__( "Item was updated successfully" )
+            ]
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Validator $validator Instance of the Validator.
+     * @param WP_REST_Request $request The REST request instance.
+     * @return array
+     */
+    public function delete( Validator $validator, WP_REST_Request $request ): array {
+        $validator->validate(
+            [
+                "id" => "required|numeric"
+            ]
+        );
+
+        $this->repository->delete_by_id( $request->get_param( "id" ) );
+
+        return Response::send(
+            [
+                "message" => esc_html__( "Item was deleted successfully" )
+            ]
+        );
     }
 }';
     }
