@@ -2,8 +2,10 @@
 
 namespace WpMVC\Artisan\Commands\App;
 
+use Exception;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use WP_Filesystem_Direct;
 use WpMVC\Artisan\Contracts\Command;
 use Symfony\Component\Console\Question\Question;
 
@@ -82,16 +84,25 @@ class Setup extends Command
         unlink( $old_root_file );
 
         $this->update_artisan_file( $plugin_namespace );
+        $this->update_composer( $file_name );
       
         $output->writeln( "<info>Information Updated Successfully!</info>" );
         echo PHP_EOL;
         $output->writeln( "<question>Started adding namespace prefix to the Composer libraries</question>" );
-        exec( 'composer humbug/php-scoper' );
-        exec( 'composer add-prefix' );
+        exec( 'composer setup' );
 
         $output->writeln( "<info>{$plugin_name} Plugin Setup Successfully!</info>" );
 
         return Command::SUCCESS;
+    }
+
+    protected function update_composer( string $file_name ) {
+        $file    = $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'composer.json';
+        $subject = file_get_contents( $file );
+        file_put_contents( $file, str_replace( "wpmvc/wpmvc", "wpmvc" . time() . "/" . $file_name, $subject ) );
+
+        $this->delete_folder( $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'vendor-src' );
+        unlink( $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'composer.lock' );
     }
 
     protected function update_artisan_file( string $namespace ) {
@@ -186,6 +197,32 @@ class Setup extends Command
         }
 
         return str_replace( ' ', '', ucwords( $plugin_namespace ) );
+    }
+
+    private function delete_folder( string $folder ): void {
+        if ( ! is_dir( $folder ) || is_link( $folder ) ) {
+            // Do not delete if it's not a directory or if it's a symlink
+            return;
+        }
+
+        $files = array_diff( scandir( $folder ), ['.', '..'] );
+
+        foreach ( $files as $file ) {
+            $path = $folder . DIRECTORY_SEPARATOR . $file;
+
+            if ( is_link( $path ) ) {
+                // Skip symlinks entirely
+                continue;
+            }
+
+            if ( is_dir( $path ) ) {
+                $this->delete_folder( $path );
+            } elseif ( is_file( $path ) ) {
+                unlink( $path );
+            }
+        }
+
+        rmdir( $folder );
     }
 }
 
