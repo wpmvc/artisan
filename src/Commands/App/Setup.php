@@ -81,7 +81,7 @@ class Setup extends Command
         fwrite( $new_file, (string) str_replace( $search, $replace, $subject ) );
         fclose( $new_file );
 
-        unlink( $old_root_file );
+        @unlink( $old_root_file );
 
         $this->update_artisan_file( $plugin_namespace );
         $this->update_composer( $file_name );
@@ -218,11 +218,11 @@ class Setup extends Command
             if ( is_dir( $path ) ) {
                 $this->delete_folder( $path );
             } elseif ( is_file( $path ) ) {
-                unlink( $path );
+                @unlink( $path );
             }
         }
 
-        rmdir( $folder );
+        @rmdir( $folder );
     }
 }
 
