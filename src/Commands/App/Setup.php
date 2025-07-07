@@ -89,11 +89,6 @@ class Setup extends Command
         $output->writeln( "<question>Started adding namespace prefix to the Composer libraries</question>" );
         exec( 'composer setup' );
 
-        $has_chmod = trim( shell_exec( 'command -v chmod' ) ) !== '';
-        if ( $has_chmod ) {
-            exec( 'composer permission' );
-        }
-
         $output->writeln( "<info>{$plugin_name} Plugin Setup Successfully!</info>" );
 
         return Command::SUCCESS;
