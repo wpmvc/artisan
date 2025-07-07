@@ -100,7 +100,7 @@ class Setup extends Command
         file_put_contents( $file, str_replace( "wpmvc/wpmvc", "wpmvc" . time() . "/" . $file_name, $subject ) );
 
         $this->delete_folder( $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'vendor-src' );
-        unlink( $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'composer.lock' );
+        @unlink( $this->artisan->root_dir . DIRECTORY_SEPARATOR . 'composer.lock' );
     }
 
     protected function update_artisan_file( string $namespace ) {
