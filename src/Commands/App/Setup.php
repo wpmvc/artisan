@@ -2,10 +2,8 @@
 
 namespace WpMVC\Artisan\Commands\App;
 
-use Exception;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use WP_Filesystem_Direct;
 use WpMVC\Artisan\Contracts\Command;
 use Symfony\Component\Console\Question\Question;
 
@@ -90,6 +88,11 @@ class Setup extends Command
         echo PHP_EOL;
         $output->writeln( "<question>Started adding namespace prefix to the Composer libraries</question>" );
         exec( 'composer setup' );
+
+        $has_chmod = trim( shell_exec( 'command -v chmod' ) ) !== '';
+        if ( $has_chmod ) {
+            exec( 'composer permission' );
+        }
 
         $output->writeln( "<info>{$plugin_name} Plugin Setup Successfully!</info>" );
 
