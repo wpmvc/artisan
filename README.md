@@ -8,4 +8,4 @@
 
 A powerful command-line interface for the WpMVC framework, inspired by Laravel's Artisan. Built on `symfony/console`, it provides a set of helpful commands to streamline WordPress plugin development.
 
-For a full list of available commands and detailed usage guides, please refer to the [Artisan Documentation](docs/artisan).
+For a full list of available commands and detailed usage guides, please refer to the [Artisan Documentation](https://wpmvc.com/doc/artisan).
