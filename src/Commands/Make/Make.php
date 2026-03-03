@@ -59,6 +59,25 @@ abstract class Make extends Command {
             return Command::FAILURE;
         }
 
+        $placeholders = $this->get_placeholders( $namespaces, $class );
+        
+        $file    = fopen( $file_path, "wb" );
+        $content = (string) str_replace( array_keys( $placeholders ), array_values( $placeholders ), $this->file_content() );
+        fwrite( $file, $content );
+        fclose( $file );
+        $output->writeln( "<info>{$class} {$this->get_called_class_name()} Created Successfully!</info>" );
+
+        return Command::SUCCESS;
+    }
+
+    /**
+     * Get placeholders for file content
+     *
+     * @param array $namespaces
+     * @param string $class
+     * @return array
+     */
+    protected function get_placeholders( $namespaces, $class ) {
         $uses_classes = static::uses_classes();
         $uses_classes = array_map(
             function( $class ) {
@@ -66,13 +85,11 @@ abstract class Make extends Command {
             }, $uses_classes
         );
 
-        $file    = fopen( $file_path, "wb" );
-        $content = (string) str_replace( ['NamespaceName', 'UsesClasses', 'ClassName'], [implode( '\\', $namespaces ), implode( PHP_EOL, $uses_classes ), $class], $this->file_content() );
-        fwrite( $file, $content );
-        fclose( $file );
-        $output->writeln( "<info>{$class} {$this->get_called_class_name()} Created Successfully!</info>" );
-
-        return Command::SUCCESS;
+        return [
+            'NamespaceName' => implode( '\\', $namespaces ),
+            'UsesClasses'   => implode( PHP_EOL, $uses_classes ),
+            'ClassName'     => $class,
+        ];
     }
 
     protected function configure() {

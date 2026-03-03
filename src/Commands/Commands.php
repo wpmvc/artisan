@@ -9,6 +9,11 @@ use WpMVC\Artisan\Commands\Make\Middleware;
 use WpMVC\Artisan\Commands\Make\Model;
 use WpMVC\Artisan\Commands\Make\Provider;
 use WpMVC\Artisan\Commands\Make\Repository;
+use WpMVC\Artisan\Commands\Make\Factory;
+use WpMVC\Artisan\Commands\Make\Seeder;
+use WpMVC\Artisan\Commands\Make\Mail;
+use WpMVC\Artisan\Commands\Make\Request;
+use WpMVC\Artisan\Commands\Db\Seed;
 use WpMVC\Artisan\Contracts\Command;
 
 class Commands
@@ -26,7 +31,12 @@ class Commands
             Middleware::class,
             Model::class,
             Provider::class,
-            Repository::class
+            Repository::class,
+            Factory::class,
+            Seeder::class,
+            Mail::class,
+            Request::class,
+            Seed::class
         ];
     }
 }

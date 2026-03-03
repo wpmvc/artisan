@@ -42,12 +42,17 @@ defined( "ABSPATH" ) || exit;
 UsesClasses
 
 class ClassName extends Model {
-    public static function get_table_name():string {
+    /**
+     * Get the table name without WordPress prefix.
+     *
+     * @return string
+     */
+    public static function get_table_name(): string {
         // return your table name here
     }
 
     public function resolver():Resolver {
-        return App::$container->get( Resolver::class );
+        return App::get_container()->get( Resolver::class );
     }
 }';
     }

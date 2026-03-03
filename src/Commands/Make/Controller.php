@@ -31,8 +31,7 @@ class Controller extends Make {
             'App\Http\Controllers\Controller',
             'WpMVC\Exceptions\Exception',
             'WpMVC\Routing\Response',
-            'WpMVC\RequestValidator\Validator',
-            'WP_REST_Request'
+            'WpMVC\RequestValidator\Request'
         ];
     }
 
@@ -56,11 +55,10 @@ class ClassName extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @param Validator $validator Instance of the Validator.
-     * @param WP_REST_Request $request The REST request instance.
+     * @param Request $request The REST request instance.
      * @return array
      */
-    public function index( Validator $validator, WP_REST_Request $request ): array {
+    public function index( Request $request ): array {
         return Response::send(
             [
                 "items" => $this->repository->get()
@@ -71,12 +69,11 @@ class ClassName extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param Validator $validator Instance of the Validator.
-     * @param WP_REST_Request $request The REST request instance.
+     * @param Request $request The REST request instance.
      * @return array
      */
-    public function store( Validator $validator, WP_REST_Request $request ): array {
-        $validator->validate(
+    public function store( Request $request ): array {
+        $request->validate(
             [
                 // Add request-validation rules here.
             ]
@@ -98,13 +95,12 @@ class ClassName extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param Validator $validator Instance of the Validator.
-     * @param WP_REST_Request $request The REST request instance.
+     * @param Request $request The REST request instance.
      * @return array
      * @throws Exception
      */
-    public function show( Validator $validator, WP_REST_Request $request ): array {
-        $validator->validate(
+    public function show( Request $request ): array {
+        $request->validate(
             [
                 "id" => "required|numeric"
             ]
@@ -126,12 +122,11 @@ class ClassName extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param Validator $validator Instance of the Validator.
-     * @param WP_REST_Request $request The REST request instance.
+     * @param Request $request The REST request instance.
      * @return array
      */
-    public function update( Validator $validator, WP_REST_Request $request ): array {
-        $validator->validate(
+    public function update( Request $request ): array {
+        $request->validate(
             [
                 "id" => "required|numeric"
                 // Add other validation rules as needed.
@@ -153,12 +148,11 @@ class ClassName extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param Validator $validator Instance of the Validator.
-     * @param WP_REST_Request $request The REST request instance.
+     * @param Request $request The REST request instance.
      * @return array
      */
-    public function delete( Validator $validator, WP_REST_Request $request ): array {
-        $validator->validate(
+    public function delete( Request $request ): array {
+        $request->validate(
             [
                 "id" => "required|numeric"
             ]

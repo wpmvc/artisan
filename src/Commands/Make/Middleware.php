@@ -29,6 +29,7 @@ class Middleware extends Make {
     public function uses_classes():array {
         return [
             'WP_REST_Request',
+            'WP_Error',
             'WpMVC\Routing\Contracts\Middleware',
             'WpMVC\Exceptions\Exception',
         ];
@@ -36,6 +37,11 @@ class Middleware extends Make {
 
     public function file_content() {
         return '<?php
+/**
+ * Middleware Class.
+ *
+ * @package NamespaceName
+ */
 
 namespace NamespaceName;
 
@@ -43,16 +49,22 @@ defined( "ABSPATH" ) || exit;
 
 UsesClasses
 
+/**
+ * Class ClassName
+ *
+ * @package NamespaceName
+ */
 class ClassName implements Middleware {
     /**
-    * Handle an incoming request.
-    *
-    * @param  WP_REST_Request  $wp_rest_request
-    * @return bool
-    */
-    public function handle( WP_REST_Request $wp_rest_request ): bool {
+     * Handle an incoming request.
+     *
+     * @param  WP_REST_Request  $wp_rest_request The current request instance.
+     * @param  mixed           $next            The next middleware closure in the stack.
+     * @return bool|WP_Error Returns true to continue, false to forbid, or WP_Error.
+     */
+    public function handle( WP_REST_Request $wp_rest_request, $next ) {
         // Write your middleware logic here
-        return true;
+        return $next( $wp_rest_request );
     }
 }';
     }
