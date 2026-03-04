@@ -40,7 +40,7 @@ defined( "ABSPATH" ) || exit;
 
 UsesClasses
 
-class ClassName implements Provider {
+class ClassName extends Provider {
     /**
      * Register any application services.
      *
