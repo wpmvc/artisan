@@ -26,8 +26,6 @@ class Model extends Make {
 
     public function uses_classes():array {
         return [
-            'WpMVC\App',
-            'WpMVC\Database\Resolver',
             'WpMVC\Database\Eloquent\Model'
         ];
     }
@@ -49,10 +47,6 @@ class ClassName extends Model {
      */
     public static function get_table_name(): string {
         // return your table name here
-    }
-
-    public function resolver():Resolver {
-        return App::get_container()->get( Resolver::class );
     }
 }';
     }
