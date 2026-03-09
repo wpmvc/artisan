@@ -12,6 +12,7 @@ use WpMVC\Artisan\Commands\Make\Repository;
 use WpMVC\Artisan\Commands\Make\Factory;
 use WpMVC\Artisan\Commands\Make\Seeder;
 use WpMVC\Artisan\Commands\Make\Mail;
+use WpMVC\Artisan\Commands\Make\Migration;
 use WpMVC\Artisan\Commands\Make\Request;
 use WpMVC\Artisan\Commands\Db\Seed;
 use WpMVC\Artisan\Contracts\Command;
@@ -35,6 +36,7 @@ class Commands
             Factory::class,
             Seeder::class,
             Mail::class,
+            Migration::class,
             Request::class,
             Seed::class
         ];
