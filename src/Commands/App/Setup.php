@@ -51,7 +51,8 @@ class Setup extends Command
             'MyPluginTextDomain',
             'plugin_file_name',
             'my_plugin_hook',
-            'my_plugin_function'
+            'my_plugin_function',
+            'wpmvc.php'
         ];
 
         $file_name =  str_replace( ' ', '-', strtolower( $plugin_name ) );
@@ -65,7 +66,8 @@ class Setup extends Command
             $file_name,
             $file_name,
             $hook_name,
-            $hook_name
+            $hook_name,
+            $file_name . '.php'
         ];
 
         $this->update_file_content( $search, $replace );
@@ -148,7 +150,7 @@ class Setup extends Command
     }
 
     protected function directories() {
-        return ['app', 'config', 'routes', 'database', 'dev-tools', 'enqueues'];
+        return ['app', 'config', 'routes', 'database', 'dev-tools', 'enqueues', 'tests'];
     }
 
     protected function plugin_name_validation( $plugin_name, InputInterface $input, OutputInterface $output ) {
